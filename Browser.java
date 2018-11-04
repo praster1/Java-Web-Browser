@@ -5,6 +5,7 @@ import java.net.*;
 import java.io.*;
 
 
+
 public class Browser
 {
     private JFrame frame;
@@ -78,7 +79,8 @@ public class Browser
         }
         
         //create the scroll pane and add the JEditorPane to it.
-        scroll = new JScrollPane(editor, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scroll = new JScrollPane(editor, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         //create the JTextField
         field = new JTextField();
@@ -86,10 +88,8 @@ public class Browser
         //set the JTextField text to the url.
         //we're not doing this on the event dispatch thread, so we need to use
         //SwingUtilities.
-        SwingUtilities.invokeLater(new Runnable() 
-        {
-           public void run() 
-           {
+        SwingUtilities.invokeLater(new Runnable() {
+           public void run() {
                field.setText(url.toString());
            }
         });
@@ -98,16 +98,12 @@ public class Browser
         button = new JButton("Go");
         
         //add action listener to the button
-        button.addActionListener(new ActionListener() 
-        {
-            public void actionPerformed(ActionEvent e) 
-            {
-                try 
-                {
+        button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
                     editor.setPage(field.getText());
                 }
-                catch(IOException ioe) 
-                {
+                catch(IOException ioe) {
                     JOptionPane.showMessageDialog(null, ioe);
                 }
             }
